@@ -1,52 +1,99 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="">
+@vite(['resources/css/register.css'])
+<title>Lesson Sample Site</title>
+</head>
+<body>
+    <div class="container">
+            <form action="{{ route('auth.store') }}" method="POST" >
+            @csrf
+                <div class="content">
+                    <h2>新規登録画面</h2>
+                    <!-- Name -->
+                    <dl>
+                        <dt class="username">
+                            <label for="username">名前:</label>
+                            <span class="hissu">必須</span>
+                            @error('username')
+                                <span class="invalid-feedback" role="alert">
+                                    <p style="color:red">{{ $message }}</p>
+                                </span>
+                            @enderror
+                        </dt>
+                        <dd>
+                            <input id="username" type="text" name="username" value="{{ old('username') }}" />
+                        </dd>
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        <!-- Furigana -->
+                        <dt class="phonetic">
+                            <label for="phonetic">フリガナ:</label>
+                            <span class="hissu">必須</span>
+                            @error('phonetic')
+                                <span class="invalid-feedback" role="alert">
+                                    <p style="color:red">{{ $message }}</p>
+                                </span>
+                            @enderror
+                        </dt>
+                        <dd>
+                            <input id="phonetic" type="text" name="phonetic" :value="old('phonetic')" />
+                        </dd>
+
+                        <!-- Password -->
+                        <dt class="password">
+                            <label for="password">パスワード:</label>
+                            <span class="hissu">必須</span>
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <p style="color:red">{{ $message }}</p>
+                                </span>
+                            @enderror
+                        </dt>
+                        <dd>
+                            <input id="password" type="password" name="password" :value="old('password')" />
+                        </dd>
+
+                        <!-- Confirm Password -->
+                        <dt class="password_confirmation">
+                            <label for="password_confirmation">パスワード確認:</label>
+                            <span class="hissu">必須</span>
+                            @error('password_confirmation')
+                                <span class="invalid-feedback" role="alert">
+                                    <p style="color:red">{{ $message }}</p>
+                                </span>
+                            @enderror
+                        </dt>
+                        <dd>
+                            <input id="password_confirmation" type="password" name="password_confirmation" :value="old('password_confirmation')" />
+                        </dd>
+
+                        <!-- Email Address -->
+                        <dt class="email">
+                            <label for="email">メールアドレス:</label>
+                            <span class="hissu">必須</span>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <p style="color:red">{{ $message }}</p>
+                                </span>
+                            @enderror
+                        </dt>
+                        <dd>
+                            <input id="email" type="text" name="email" :value="old('email')" />
+                        </dd>
+
+                        <!--　送信ボタン-->
+                        <div class="btn">
+                            <button type="submit" class="button">送信</button>
+                        </div>
+                        <!-- 戻るボタン -->
+                        <div class="btn">
+                            <a href="{{ route('login') }}" class="button">戻る</a>
+                        </div>
+                    </dl>
+                </div>
+            </form>
         </div>
-
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ml-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    </body>
+</html>

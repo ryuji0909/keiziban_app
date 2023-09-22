@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('content');
             $table->integer('topic_id');
-            $table->integer('created_by');
+            $table->integer('user_id');
             $table->timestamps();
             $table->softDeletes();// deleted_atカラムの追加
         });

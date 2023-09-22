@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1032px;
+    padding: 0 16px;
+    margin: 0 auto;
+  }
+
+
+/*  header  */
+#header {
+    background-color: #A2E981;
+    height: 100px;
+    display: flex; 
+    align-items: center;
+}
+
+#header .inner {
+    display: flex;
+    align-items: center;
+}
+
+#header .text {
+    font-size: 40px;
+}
+
+#header nav {
+    margin-left:auto;
+}
+
+#header .inner ul {
+    display: flex;
+    align-items: center;
+}
+
+#header .inner ul li {
+    margin-left: 40px;
+}
+
+#header nav ul li a {
+    color: black;
+}
+
+#header nav ul li a:hover {
+    color: aliceblue;
+}
+
+#header nav ul li:hover {
+    color: aliceblue;
+}
+
+
+/*  topic  */
+#topicarea {
+    margin:40px 0;
+    border-bottom: 1px solid black;
+}
+
+.topicarea{
+    margin-bottom: 30px;
+}
+
+#topicarea h2 {
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+
+.topicarea p {
+    margin-bottom: 20px;
+}
+
+.topicarea span {
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+dl.topic_area {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.topicarea a {
+    display: inline-block;
+    background-color: #A2E981;
+    width: 80px;
+    text-align: center;
+    font-size: 8px;
+    padding: 6px;
+    color: black;
+    border-radius: 3px;
+}
+
+.topicarea a:hover {
+    background-color: aqua;
+}
+
+dd, dt {
+    flex: 100%; /* 2つの要素を1行に表示 */
+    box-sizing: border-box;
+    margin-bottom: 8px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+dt input, dt textarea {
+    width: 100%;
+}
+
+dt input {
+    padding: 4px;
+}
+
+dt textarea {
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+#commentarea {
+    margin-bottom: 80px;
+}
+
+#commentarea h2 {
+    margin-bottom: 40px;
+}
+
+#commentarea ul {
+    display: flex;
+}
+
+#commentarea ul li {
+    margin-right: 40px;
+}
+
+#commentarea ul li a{
+    color: black;
+}
+
+.commentusername {
+    font-size: 12px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.comment {
+    font-size: 25px;
+}
+
+.delete-link:hover {
+    background-color: red;
+}
+
+#commentarea .btn {
+    margin-top: 40px;
+    border-bottom: 1px solid black;
+    padding-bottom: 40px;
+}
+
+#commentarea button {
+    width: 80px;
+}
+
+.up:hover {
+    background-color: yellow;
+}
+
+.down:hover {
+    background-color: #172463;
+    color: #fff;
+}
+
+/*  footer  */
+footer {
+    background-color: #A2E981;
+    height: 100px;
+}
+
+footer nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+footer nav ul li {
+    margin: 40px;
+}

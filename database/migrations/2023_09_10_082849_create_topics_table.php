@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->integer('created_by');
+            $table->dropColumn('user_id');
             $table->timestamps();
             $table->softDeletes();// deleted_atカラムの追加
         });
@@ -26,6 +26,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        
         Schema::dropIfExists('topics');
+        
     }
 };

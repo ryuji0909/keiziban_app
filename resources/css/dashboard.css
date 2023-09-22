@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1032px;
+    padding: 0 16px;
+    margin: 0 auto;
+  }
+
+
+/*  header  */
+#header {
+    background-color: #A2E981;
+    height: 100px;
+    display: flex; 
+    align-items: center;
+}
+
+#header .inner {
+    display: flex;
+    align-items: center;
+}
+
+#header .text {
+    font-size: 40px;
+}
+
+#header nav {
+    margin-left:auto;
+}
+
+#header .inner ul {
+    display: flex;
+    align-items: center;
+}
+
+#header .inner ul li {
+    margin-left: 40px;
+}
+
+#header nav ul li a {
+    color: black;
+}
+
+#header nav ul li a:hover {
+    color: aliceblue;
+}
+
+#header nav ul li:hover {
+    color: aliceblue;
+}
+
+.container {
+    display: flex;
+    height: auto;
+    width: 100%;
+    margin: 0 auto;
+}
+
+article {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    border-right: 1px solid black;
+    padding-right: 70px;
+    padding-left: 40px;
+}
+
+article .side ul li {
+    margin-bottom: 50px;
+}
+
+article .side ul li a{
+    color: black;
+}
+
+article .side ul li a:hover {
+    opacity: 0.4;
+}
+
+.content {
+    height: auto;
+    width: 100%;
+}
+
+.content dl {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.content dl dd {
+    width: 40%;
+    border: 1px solid black;
+    padding: 20px;
+
+}
+
+.content dl dt {
+    width: 60%;
+    border: 1px solid black;
+    padding: 20px;
+}
+
+.content h1 {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.content table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border: 1px solid black;
+    margin-top: 20px;
+}
+
+.content table tr {
+    text-align: center;
+    border: 1px solid black;
+   
+}
+
+.content table tr th,
+.content table tr td{
+    border-left: 1px solid black;
+    padding: 20px;
+}
+
+.content table tr th {
+    font-size: 15px;
+    background-color: bisque;
+}
+
+.content table tr td {
+    font-size: 15px;
+}
+
+.delete-link {
+    width: 70px;
+    padding: 6px;
+}
+
+.delete-link:hover {
+    background-color: red;
+}
+
+/*  footer  */
+footer {
+    background-color: #A2E981;
+    height: 100px;
+}
+
+footer nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+footer nav ul li {
+    margin: 40px;
+}

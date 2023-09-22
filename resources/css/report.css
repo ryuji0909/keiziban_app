@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1032px;
+    padding: 0 16px;
+    margin: 0 auto;
+  }
+
+
+/*  header  */
+#header {
+    background-color: #A2E981;
+    height: 100px;
+    display: flex; 
+    align-items: center;
+}
+
+#header .inner {
+    display: flex;
+    align-items: center;
+}
+
+#header .text {
+    font-size: 40px;
+}
+
+#header nav {
+    margin-left:auto;
+}
+
+#header .inner ul {
+    display: flex;
+    align-items: center;
+}
+
+#header .inner ul li {
+    margin-left: 40px;
+}
+
+#header nav ul li a {
+    color: black;
+}
+
+#header nav ul li a:hover {
+    color: aliceblue;
+}
+
+#header nav ul li:hover {
+    color: aliceblue;
+}
+
+/* report */
+#report {
+    margin-top: 80px;
+}
+#report h1 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+#report table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border: 1px solid black;
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+
+#report table tr {
+    text-align: center;
+    border: 1px solid black;
+   
+}
+
+#report table tr th,
+#report table tr td{
+    border-left: 1px solid black;
+    padding: 20px;
+}
+
+#report table tr th {
+    font-size: 15px;
+    background-color: bisque;
+}
+
+#report table tr td {
+    font-size: 15px;
+}
+
+
+/*  footer  */
+footer {
+    background-color: #A2E981;
+    height: 100px;
+}
+
+footer nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+footer nav ul li {
+    margin: 40px;
+}

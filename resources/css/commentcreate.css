@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1032px;
+    padding: 0 16px;
+    margin: 0 auto;
+  }
+
+#header {
+    background-color: #A2E981;
+    height: 100px;
+    display: flex; 
+    align-items: center;
+}
+
+#header .inner {
+    display: flex;
+    align-items: center;
+}
+
+#header .text {
+    font-size: 40px;
+}
+
+#header nav {
+    margin-left:auto;
+}
+
+#header .inner ul {
+    display: flex;
+    align-items: center;
+}
+
+#header .inner ul li {
+    margin-left: 40px;
+}
+
+#header nav ul li a {
+    color: black;
+}
+
+#header nav ul li a:hover {
+    color: aliceblue;
+}
+
+#header nav ul li:hover {
+    color: aliceblue;
+}
+
+.commentarea h1 {
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
+}
+
+section {
+    margin: 120px 0;
+}
+
+dd {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+}
+
+button {
+    width: 70px;
+    background-color: #A2E981;
+    border: none;
+    border-radius: 3px;
+    margin-top: 20px;
+    line-height: 3;
+    margin-right: 20px;
+}
+
+button:hover {
+    background-color: black;
+    color: #fff;
+}
+
+/*  footer  */
+footer {
+    background-color: #A2E981;
+    height: 100px;
+}
+
+footer nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+footer nav ul li {
+    margin: 40px;
+}

@@ -1,0 +1,92 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1032px;
+    padding: 0 16px;
+    margin: 0 auto;
+  }
+
+
+/*  header  */
+#header {
+    background-color: #A2E981;
+    height: 100px;
+    display: flex; 
+    align-items: center;
+}
+
+#header .inner {
+    display: flex;
+    align-items: center;
+}
+
+#header .text {
+    font-size: 40px;
+}
+
+#header nav {
+    margin-left:auto;
+}
+
+#header .inner ul {
+    display: flex;
+    align-items: center;
+}
+
+#header .inner ul li {
+    margin-left: 40px;
+}
+
+#header nav ul li a {
+    color: black;
+}
+
+#header nav ul li a:hover {
+    color: aliceblue;
+}
+
+#header nav ul li:hover {
+    color: aliceblue;
+}
+
+/*  hilight  */
+
+#hilight h2 {
+    margin: 40px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
+}
+
+#hilight table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+#hilight table tr th {
+    font-size: 20px;
+    padding: 13px;
+}
+
+#hilight table td {
+    padding: 15px;
+    font-size: 15px;
+}
+

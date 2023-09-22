@@ -17,9 +17,10 @@ class RegisteredUserController extends Controller
 {
     /**
      * Display the registration view.
-     */
+      */
     public function create(): View
     {
+        
         return view('auth.register');
     }
 
@@ -31,21 +32,26 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'username' => ['required', 'string'],
+            'phonetic' => ['required', 'string'], 
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+        ],User::$messages, User::$validationAttributes);
+        
+    
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
+            'username' => $request->username,
+            'phonetic' =>$request->phonetic,
             'password' => Hash::make($request->password),
+            'email' => $request->email,
+            'user_type_id' => 0 //本当は定数で書く。
         ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user); //新規登録直後に自動でログインされる
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect('/login');
     }
 }
