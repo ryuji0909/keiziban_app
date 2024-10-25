@@ -8,49 +8,66 @@
 @vite(['resources/css/topichome.css'])
 <title>一般ユーザトップ画面</title>
 </head>
-<body>
-    <header id="header">
-        <h2 class="text container">掲示板</h2>
-        <nav class="container">
-            <ul>
-                <li>{{ Auth::user()->username }}さん</li>
-                <li> <a href="{{ route('logout') }}" class="backbtn" onclick="event.preventDefault();document.getElementById('logout-form').submit();">ログアウト</a></li>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+    <body>
+        <header class="text-gray-600 body-font bg-indigo-500">
+            <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+                <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                    <span class="ml-3 text-xl">掲示板</span>
+                </a>
+                <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center text-white">
+                    <a class="mr-5">{{ Auth::user()->username }}さん</a>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="mr-5">ログアウト</a>
+                    <a href="{{ route('highlight.index')}}" class="mr-5">ハイライト一覧</a>
+                </nav>
+            </div>
+        </header>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
+        <section class="text-gray-600 body-font relative">
+            <div class="container px-5 py-24 mx-auto">
+                <div class="flex flex-col text-center w-full mb-12">
+                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">新規投稿</h1>
+                </div>
+                <div class="lg:w-1/2 md:w-2/3 mx-auto">
+                    <form action="{{ route('topic.store') }}" method="post">
                     @csrf
-                </form>
-                <li><a href="{{ route('highlight.index')}}">ハイライト一覧</a></li>
-            </ul>
-        </nav>   
-    </header>
-
-<main>
-        <form action="{{ route('topic.store') }}" method="post">
-        @csrf
-        <div class="container">
-                <section id="newtopic" class="content">
-                    <h2 class="newtopic_text">新規投稿</h2>
-                    <div class="topicarea">
-                        <dl class="topic_area">
-                            <dd><label for="title">投稿タイトル：</label></dd>
-                            @error('title')
-                                <span class="invalid-feedback" role="alert">
-                                    <p style="color:red">{{ $message }}</p>
-                                </span>
-                            @enderror
-                            <dt><input type="text" id="title" name ="title" value="{{ old('title') }}"></dl>
-                            <dd><label for="content">投稿内容：</label></dd>
+                    <div class="flex flex-wrap -m-2">
+                        <div class="p-2 w-full">
+                            <div class="relative">
+                                <label for="name" class="leading-7 text-sm text-gray-600">投稿タイトル</label>
+                                    @error('title')
+                                        <span class="invalid-feedback" role="alert">
+                                            <p style="color:red">{{ $message }}</p>
+                                        </span>
+                                    @enderror
+                                <input type="text" id="title" name="title" value="{{ old('title') }}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            </div>
+                        </div>
+                        <div class="p-2 w-1/2">
+                    </div>
+                    <div class="p-2 w-full">
+                        <div class="relative">
+                            <label for="message" class="leading-7 text-sm text-gray-600">投稿内容</label>
                             @error('content')
                                 <span class="invalid-feedback" role="alert">
                                     <p style="color:red">{{ $message }}</p>
                                 </span>
                             @enderror
-                            <dt><textarea id="content" name="content">{{ old('content') }}</textarea></dt>
-                        </dl>
+                            <textarea id="content" name="content" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{ old('content') }}</textarea>
+                        </div>
                     </div>
-                    <button type="submit" class="btn">投稿</button>
-                    <button type="button" id="clearButton" class="back">キャンセル</button>
-            </section>
-        </form>  
+                    <div class="p-2 w-full">
+                        <button class="flex mx-auto text-white bg-indigo-400 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">投稿</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </section>
+
+
+
+
         <section id="topic" class="content">
             <h1 class="topic_text">Topic</h1>
                 @foreach ($topics as $topic) 
@@ -67,7 +84,6 @@
                     </p>
                         <p>投稿タイトル：{{ $topic->title }}</p>
                         <p>投稿内容：{{ $topic->content }}</p>
-                    
                         <div class="btn">
                             <ul>
                                 <li><a href="{{ route('user.commentcreate', ['id' => $topic->id])}}" class="replay">リプライ</a></li>
@@ -79,8 +95,8 @@
                                     </form>
                                 </li>
                                 <li><a href="{{ route('topic.edit', ['id' => $topic->id])}}" class="update">編集</a></li>
-                                <li> 
-                                    <form id="delete-form" action="{{ route('user.destroy', ['id'=>$topic->id]) }}" method="POST">
+                                <li>
+                                    <form id="delete-form" action="{{ route('user.destroy', ['id'=>$topic->id]) }}" method="POST"> <!-- 1件のデータを削除 -->
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn delete-link">削除</button>
@@ -89,25 +105,15 @@
                                 @if($topic->highlights->count() > 0)
                                 <!-- 1件以上存在する場合の処理 -->
                                 <li>☆</li>
-                                @endif  
-
+                                @endif
                             </ul>
                         </div>
                     </div>
                 @endforeach
-        </section>
-    </div>  
+            </section>
+    </div>
 </main>
 
-    <footer>
-        <nav>
-            <ul>
-                <li>会社情報</li>
-                <li>プライバシーポリシー</li>
-                <li>利用規約</li>
-            </ul>
-        </nav>
-    </footer>
 
     <script>
         // 削除ボタンがクリックされたときの処理
@@ -133,5 +139,5 @@
         });
     </script>
     
-</body>
+    </body>
 </html>

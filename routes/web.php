@@ -47,18 +47,16 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/comments/{commentid}/vote', [TrustVoteController::class, 'vote'])->middleware('userType:0');
     Route::get('/report/{id}', [ReportController::class, 'create'])->name('reports.create')->middleware('userType:0');
     Route::post('/report/store', [ReportController::class, 'store'])->name('report.store')->middleware('userType:0');
-    
-    
+
+
     // 管理者ユーザー向けのルート定義
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard')->middleware('userType:1');
-    Route::delete('dashboard/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.destroy'); //投稿のコメント削除
+    Route::get('/top', [AdminController::class, 'index'])->name('admin.top.index')->middleware('userType:1');
+    Route::get('/topic', [TopicController::class, 'index'])->name('admin.topic.index')->middleware('userType:1');
+    Route::delete('/topic/{id}/destroy', [AdminController::class, 'destroy'])->name('admin.topic.destroy')->middleware('userType:1');
     Route::get('/userlist', [UserListController::class, 'index'])->name('userlist.index')->middleware('userType:1');
-    Route::delete('userlist/destroy/{id}', [UserListController::class, 'destroy'])->name('userlist.destroy'); //ユーザーの削除
+    Route::delete('/{id}/userlist', [UserListController::class, 'destroy'])->name('userlist.destroy'); //ユーザーの削除
     Route::get('/report', [ReportController::class, 'index'])->name('reports.index')->middleware('userType:1');
-    // Route::get('/topics/{topic}/comments', [AdminController::class, 'showComments'])->name('admin.comments')->middleware('userType:1');
-    // Route::get('/reports', [AdminController::class, 'showReports'])->name('admin.reports')->middleware('userType:1');
-    // Route::get('/users', [AdminController::class, 'manageUsers'])->name('admin.users')->middleware('userType:1');
-    
+    Route::delete('/{id}/destroy', [ReportController::class, 'destroy'])->name('report.destroy')->middleware('userType:1');
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('auth.register'); //新規登録画面表示

@@ -3,38 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="">
-@vite(['resources/css/login.css'])
-<title>Lesson Sample Site</title>
+@vite(['resources/css/app.css'])
+<title>ログイン</title>
 </head>
 <body>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('login') }}" novalidate>
-        @csrf
-
-        <div class="container">
-            <h2>Login</h2>
-
-            <!-- Email Address -->
-            <div class="email">
-                <x-input-error :messages="$errors->get('email')" class="error" style="color: red"/>  
-                <input id="email" type="email" name="email"  placeholder="emailaddress"> 
+    <section class="text-gray-600 body-font relative">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-col text-center w-full mb-12">
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Login</h1>
             </div>
-
-            <!-- Password -->
-            <div class="password">
-                <x-input-error :messages="$errors->get('password')" class="mt-2" style="color: red"/>
-                <input id="password" type="password" name="password" placeholder="password">
-            </div>
-
-            <div class="btn">
-                <button type="submit" class="btn">Login</button>
-            </div>
-            <div class="btn">
-                <a href="{{ route('auth.register') }}">Sign Up</a>
+            <div class="lg:w-1/2 md:w-2/3 mx-auto">
+                <x-auth-session-status class="mb-4" :status="session('status')" />
+                <form method="POST" action="{{ route('login') }}" novalidate>
+                @csrf
+                    <div class="flex flex-wrap -m-2">
+                        <div class="p-2 w-full">
+                            <div class="relative">
+                                <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
+                                <x-input-error :messages="$errors->get('email')" class="error" style="color: red"/>  
+                                <input type="email" id="email" name="email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            </div>
+                        </div>
+                        <div class="p-2 w-full mt-5">
+                            <div class="relative">
+                                <label for="password" class="leading-7 text-sm text-gray-600">Password</label>
+                                <x-input-error :messages="$errors->get('password')" class="mt-2" style="color: red"/>
+                                <input type="password" id="password" name="password" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            </div>
+                        </div>
+                        <div class="p-2 w-full mt-10">
+                            <button class="flex mx-auto text-white bg-indigo-400 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">ログイン</button>
+                        </div>
+                        <div class="p-2 w-full mt-5">
+                            <a href="{{ route('auth.register') }}" class="block text-center text-lg mx-auto">新規登録</a>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </form>
+    </section>
 </body>
 </html>

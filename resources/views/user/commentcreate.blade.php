@@ -3,69 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="">
-@vite(['resources/css/commentcreate.css'])
 <title>コメント作成画面</title>
 </head>
 <body>
-    <header id="header">
-        <div class="inner wrapper">
-            <h2 class="text">掲示板</h2>
-            <nav>
-                <ul>
-                    <li>{{ Auth::user()->username }}さん</li>
-                    <li> <a href="{{ route('logout') }}" class="backbtn" onclick="event.preventDefault();document.getElementById('logout-form').submit();">ログアウト</a></li>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                    <li><a href="{{ route('user.topichome') }}">ユーザートップ画面</a></li>
-                    <li><a href="{{ route('highlight.index')}}">ハイライト一覧</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <section>
-        <form action="{{ route('comment.store') }}" method="POST">
-            @csrf
-            <div class="commentarea wrapper">
-                <h1>コメント作成</h1>
-                <dl>
-                    <dd><label for="content">コメント：</label></dd>
-                @error('content')
-                    <span class="invalid-feedback" role="alert">
-                        <p style="color:red">{{ $message }}</p>
-                    </span>
-                @enderror
-                    <dt><textarea id="content" name="content"></textarea></dt>
-                </dl>
-                <div class="btn">
-                    <button type="submit" class="submit">送信</button>
-                    <button type="button" id="clearButton" class="back">キャンセル</button>
+    <x-header-layout>
+        <section class="text-gray-600 body-font relative">
+            <div class="container px-5 py-24 mx-auto">
+                <div class="flex flex-col text-center w-full mb-12">
+                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">コメント作成</h1>
                 </div>
-                <input type="hidden" name="user_id" value="{{ auth()->user()->id}}">
-                <input type="hidden" name="topic_id" value="{{ $topic->id}}">
+                <div class="lg:w-1/2 md:w-2/3 mx-auto">
+                    <form action="{{ route('comment.store') }}" method="POST">
+                    @csrf
+                        <div class="p-2 w-full">
+                            <div class="relative">
+                                <label for="message" class="leading-7 text-sm text-gray-600">コメント</label>
+                                @error('content')
+                                    <span class="invalid-feedback" role="alert">
+                                        <p style="color:red">{{ $message }}</p>
+                                    </span>
+                                @enderror
+                                <textarea id="content" name="content" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{ old('content') }}</textarea>
+                            </div>
+                        </div>
+                        <div class="p-2 w-full">
+                            <button class="flex mx-auto text-white bg-indigo-400 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">送信</button>
+                        </div>
+                        <input type="hidden" name="user_id" value="{{ auth()->user()->id}}">
+                        <input type="hidden" name="topic_id" value="{{ $topic->id}}">
+                    </form>
+                </div>
             </div>
-        </form>    
-    </section>
-    <footer>
-        <nav>
-            <ul>
-                <li>会社情報</li>
-                <li>プライバシーポリシー</li>
-                <li>利用規約</li>
-            </ul>
-        </nav>
-    </footer>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var clearButton = document.getElementById("clearButton");
-            var textArea = document.getElementById("content");
-    
-            clearButton.addEventListener("click", function () {
-                textArea.value = ""; // テキストエリアの内容をクリア
-            });
-        });
-    </script>
-    
+        </section>
+    </x-header-layout>
 </body>
 </html>

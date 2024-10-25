@@ -64,7 +64,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('dashboard');
+            return redirect()->intended('/top');
         }
 
         return back()->withErrors([
@@ -75,7 +75,7 @@ class LoginController extends Controller
 
 
     public function logout() {
-        Auth::user()->update(['last_login' => now()]);
+        // Auth::user()->update(['last_login' => now()]);
         Auth::logout(); //ログアウトさせる
         return redirect('/login'); //ログイン画面へリダイレクト
     }

@@ -9,20 +9,30 @@ use App\Models\Report;
 
 class AdminController extends Controller
 {
-    public function index() 
+
+      /**
+     * 管理者画面のトップページ
+     */
+    public function index()
     {
         $reports = Report::all();
         $users = User::all();
         $topics = Topic::all();
-        return view('admin.dashboard', compact('topics','users','reports'));
+        return view('admin.top.index', compact('topics','users','reports'));
     }
 
+
+
+    /**
+     * 管理者画面のTopicを削除
+     */
     public function destroy($id)
     {
         //topicsテーブルから制定のIDのレコード1件を取得
         $topic = Topic::find($id);
-        // Topic::destroy($id);
         $topic->delete(); //レコードの削除
-        return redirect('/dashboard');
+        return redirect('/top');
     }
+
+
 }

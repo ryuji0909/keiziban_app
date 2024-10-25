@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('highlights', function (Blueprint $table) {
-            $table->id();
-            $table->integer('comment_id');
-            $table->integer('highlighted_by');
-            $table->timestamp('created_at')->nullable();
+        Schema::table('topics', function (Blueprint $table) {
+            $table->string('title');
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('highlights');
+        Schema::table('topics', function (Blueprint $table) {
+            $table->dropColumn('title');
+        });
     }
 };

@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up(): void //カラムの追加や列の追加
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
@@ -27,8 +27,11 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    
+    public function down(): void //downはロールバックした際に行われる処理
+    //以下の処理はusersテーブルの削除処理が行われる
     {
         Schema::dropIfExists('users');
+        //Schema::dropIfExists('テーブル名');は指定したテーブルがあれば削除して、なければ何もしない（エラーを返さない）というメソッド
     }
 };

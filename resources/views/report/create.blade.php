@@ -8,76 +8,49 @@
 <title>報告フォーム画面</title>
 </head>
 <body>
-    <header id="header">
-        <div class="inner wrapper">
-            <h2 class="text">掲示板</h2>
-            <nav>
-                <ul>
-                    <li>{{ Auth::user()->username }}さん</li>
-                    <li> <a href="{{ route('logout') }}" class="backbtn" onclick="event.preventDefault();document.getElementById('logout-form').submit();">ログアウト</a></li>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <section id="report">
-        <div class="wrapper">
-            <h1>報告フォーム</h1>
-            <form action="{{ route('report.store')}}" method="POST">
-                @csrf
-                <div class="content">
-                    <dl>
-                        <div>
-                            <dd>コメント内容：{{ $comment->content }}</dd>
-                        </div>
-                        <div>
-                            <dd>報告理由：<textarea id="reportreason" name="description"></textarea></dd>
-                        </div>
-                        <div>
-                            <dd>コメント信頼度:  
-                            @php
-                                $score = $comment->upvoteCount() - $comment->downvoteCount();
-                            @endphp
-                            {{ $score }}</dd>
-                        </div>
-                        <div>
-                            <input hidden name="comment_id" value="{{$comment->id}}">
-                        </div>
-                    </dl>
-                    <div class="btn">
-                        <button type="submit" class="button">送信</button>
-                        <button type="button" id="clearButton" class="back">キャンセル</button>
-                    </div>
+    <x-header-layout>
+        <section class="text-gray-600 body-font relative">
+            <div class="container px-5 py-24 mx-auto">
+                <div class="flex flex-col text-center w-full mb-12">
+                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">報告フォーム</h1>
                 </div>
-            </form>   
-        </div>
-    </section>
-
-
-    <footer>
-        <nav>
-            <ul>
-                <li>会社情報</li>
-                <li>プライバシーポリシー</li>
-                <li>利用規約</li>
-            </ul>
-        </nav>
-    </footer>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var clearButton = document.getElementById("clearButton");
-            var inputText = document.getElementById("reportreason");
-            var textareaText = document.getElementById("name");
-    
-            clearButton.addEventListener("click", function () {
-                inputText.value = ""; // inputエリアの内容をクリア
-                textareaText.value = ""; // テキストエリアの内容をクリア
-            });
-        });
-    </script>
+                <div class="lg:w-1/2 md:w-2/3 mx-auto">
+                    <form action="{{ route('report.store')}}" method="POST">
+                    @csrf
+                        <div class="flex flex-wrap -m-2">
+                            <div class="p-2 w-full">
+                                <div class="relative">
+                                    <label for="name" class="leading-7 text-sm text-gray-600">コメント内容</label>
+                                    <label>:{{ $comment->content }}</label>
+                                </div>
+                            </div>
+                            <div class="p-2 w-full">
+                                <div class="relative">
+                                    <label for="name" class="leading-7 text-sm text-gray-600">コメント信頼度</label>
+                                    <label>:
+                                        @php
+                                            $score = $comment->upvoteCount() - $comment->downvoteCount();
+                                        @endphp
+                                        {{ $score }}</dd>
+                                        <input hidden name="comment_id" value="{{$comment->id}}">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="p-2 w-full">
+                                <div class="relative">
+                                <label for="message" class="leading-7 text-sm text-gray-600">報告理由</label>
+                                    <textarea id="description" name="description" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                                </div>
+                            </div>
+                            <div class="p-2 w-full">
+                                <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">送信</button>
+                            </div>
+                            </div>
+                        </div>
+                    <form>
+                <div>
+            </div>
+        </section>
+    </x-header-layout>
 </body>
 </html>

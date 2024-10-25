@@ -27,6 +27,7 @@ class Comment extends Model
 
     public function user()
     {
+        //子(Commnents) -> 親(User)の関係
         return $this->belongsTo(User::class);
     }
 

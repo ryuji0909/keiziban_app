@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
                 if($user->user_type_id == 0) {
                     return redirect('/topichome');
                 } else {
-                    return redirect('/dashbord');
+                    return redirect('/top');
                 }
             }
         }

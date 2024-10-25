@@ -8,23 +8,7 @@
 <title>コメント一覧画面</title>
 </head>
 <body>
-    <header id="header">
-        <div class="inner wrapper">
-            <h2 class="text">掲示板</h2>
-            <nav>
-                <ul>
-                    <li>{{ Auth::user()->username }}さん</li>
-                    <li> <a href="{{ route('logout') }}" class="backbtn" onclick="event.preventDefault();document.getElementById('logout-form').submit();">ログアウト</a></li>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                    <li><a href="{{ route('user.topichome') }}">ユーザートップ画面</a></li>
-                    <li><a href="{{ route('highlight.index')}}">ハイライト一覧</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
+    <x-header-layout>
     <div class="wrapper">
         <form action="#" method="post">
             @csrf
@@ -34,7 +18,7 @@
                     <dl class="topic_area">
                         @if ($topic)
                         <span>
-                            {{ $topic->user->username }}さん 
+                            {{ $topic->user->username }}さん
                             投稿日付：{{ $topic->created_at->format('Y-m-d H:i:s') }}
                         </span>
                         <dd><label for="title">タイトル：</label></dd>
@@ -47,7 +31,6 @@
                 </div>
             </section>
         </form>
-        
         <section id="commentarea">
             <h2>コメント一覧</h2>
             <dd><label for="comment">コメント内容</label></dd>
@@ -64,7 +47,7 @@
                                     <form id="delete-form" action="{{ route('comment.destroy', ['id' => $comment->id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="delete-link">削除</button>
+                                        <button type="button" class="delete-link" onclick="confirmDelete()">削除</button>
                                     </form>
                                 </li>
                                 <li><button class="vote-button up" data-comment-id="{{ $comment->id }}" data-vote="upvote">⤴︎</button></li>
@@ -79,16 +62,7 @@
                 @endif
         </section>
     </div>
-    
-    <footer>
-        <nav>
-            <ul>
-                <li>会社情報</li>
-                <li>プライバシーポリシー</li>
-                <li>利用規約</li>
-            </ul>
-        </nav>
-    </footer>
+    </x-header-layout>
 
     <script>
   document.addEventListener("DOMContentLoaded", function() {
@@ -123,6 +97,14 @@
         });
     });
 });
+
+function confirmDelete() {
+            if (confirm("本当に削除しますか？")) {
+                // ユーザーが「はい」を選択した場合
+                // フォームを送信
+                document.getElementById("delete-form").submit();
+            }
+        }
     </script>
 </body>
 </html>

@@ -10,21 +10,22 @@ use App\Models\Topic;
 class TopicController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 管理者画面のトピック一覧画面
      */
-    // public function index()
-    // {
-    //     $topics = Topic::latest()->get(); // 最新のトピックを取得
-    //     return view('user.topichome', compact('topics')); // トピック一覧をビューに渡す
-    // }
-    
 
+     public function index()
+    {
+        $topics = Topic::all();
+        return view('admin.topic.index', compact('topics'));
+    }
+  
     /**
-     * Show the form for creating a new resource.
+     * トピック画面
      */
-    public function create() //最初に画面を表示させる
+    public function create()
     {
         $topics = Topic::latest()->get(); 
+        
         return view('user.topichome', compact('topics'));
     }
 
@@ -45,7 +46,6 @@ class TopicController extends Controller
         // ユーザー名、日付、タイトル、トピック内容を保存
         $topic = new Topic();
         $topic->user_id = $user->id;
-        // $topic->$user = $user->username; // ユーザー名を保存
         $topic->title = $request->input('title');
         $topic->content = $request->input('content');
         $topic->save();
@@ -59,9 +59,9 @@ class TopicController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request, $id)
+    public function show(Request $request, $id) //1件づつの詳細情報を表示させる、idを指定することにより何番目と指定できる
     {
-        $topic = Topic::find($id);
+        $topic = Topic::find($id); //1件だけ取得
         return view('user.comment', compact('topic'));
     }
 

@@ -30,12 +30,14 @@ class Topic extends Model
     // }
     public function user()
 {
-    return $this->belongsTo(User::class);
+    //子(Topic) -> 親(User)の関係
+    return $this->belongsTo(User::class); 
 }
 
 
     public function comments()
     {
+        //親(Topic) -> 子(Comments)の関係
         return $this->hasMany(Comment::class);
     }
 
@@ -51,6 +53,7 @@ class Topic extends Model
 
     public function highlights()
     {
+        //親(Topic) -> 子(highlights)の関係
         return $this->hasMany(Highlight::class);
     }
     

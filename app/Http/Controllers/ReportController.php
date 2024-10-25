@@ -12,13 +12,13 @@ class ReportController extends Controller
 
     public function index()
     {
-        $reports = Report::all();
-        return view('report.index', compact('reports'));
+        $comments = Comment::with(['reports.reason'])->get();
+        return view('report.index', compact('comments'));
     }
     public function create($id)
     {
         $comment = Comment::find($id);
-        return view('report.create', compact('comment'));  
+        return view('report.create', compact('comment'));
     }
 
     public function store(Request $request)
@@ -27,7 +27,6 @@ class ReportController extends Controller
         $report_reason = ReportReason::create([
             'description' => $request->input('description'),
         ]);
-
         // Reportの保存
         Report::create([
             'reported_by' => auth()->id(),
@@ -38,5 +37,19 @@ class ReportController extends Controller
         return redirect('/topichome');
     }
 
-    
+    public function destroy($id)
+    {
+        
+        $report = Report::findOrFail($id);
+
+        if ($report) {
+            // コメントが存在する場合、レコードを削除
+            $report->delete();
+        }
+
+        // リダイレクト先を設定
+        return redirect('/report');
+    }
+
+
 }
